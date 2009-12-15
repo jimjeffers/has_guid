@@ -1,0 +1,28 @@
+HasGuid
+=======
+
+A simple rails plugin that makes it easy to generate customizeable SEO friendly ID's that you can use in your routes/paths.
+
+Example
+=======
+
+Add a string attribute to your model called "guid" and then simply add this line to your model:
+
+class Post < ActiveRecord::Base
+   has_guid :name
+end
+
+You can specify any attribute for the guid to be based off of. So now if we do:
+
+Post.create(:name => "Post? What post?")
+
+# => Post(:name => "Post? What post?", :guid => "post--what-post-")
+
+You can also pass a second attribute in as a scope.
+
+   has_guid :name, :deleted_at
+
+This will allow you to prevent unwanted problems with the uniquness_validation if you're using something like acts_as_paranoid.
+
+
+Copyright (c) 2009 Jim Jeffers, released under the MIT license
